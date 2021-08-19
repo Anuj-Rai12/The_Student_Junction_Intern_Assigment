@@ -1,18 +1,13 @@
 package com.example.cargo.viewmodel
 
 
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.*
 import com.example.cargo.api.ShoppingApi
 import com.example.cargo.paginate.ShoppingPaginate
 import com.example.cargo.repo.AuthRepository
 import com.example.cargo.utils.ExtraFile
-import com.example.cargo.utils.TAG
-import com.example.data.DataSealed
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

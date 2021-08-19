@@ -24,13 +24,13 @@ class ShoppingPaginate(private val shoppingApi: ShoppingApi) :
             val nextKey = if (response.isEmpty())
                 null
             else
-                pageIndex + (params.loadSize / ExtraFile.Load_size)
+                pageIndex+(params.loadSize/ExtraFile.Load_size)
             val list: MutableList<DataSealed> = mutableListOf()
             if (pageIndex== STARTING_PAGE_INDEX) {
                 list.add(
                     DataSealed.UserDescription(
                         title = "Hey Alex,",
-                        description = "Find a course you want to learn"
+                        description = "Find a Product among the Treading Fashion."
                     )
                 )
                 list.add(DataSealed.Category(title = "Categories", textBtn = "See All"))

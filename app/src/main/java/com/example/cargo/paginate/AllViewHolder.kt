@@ -10,7 +10,7 @@ import com.example.cargo.databinding.UserDescriptionBinding
 import com.example.cargo.utils.ExtraFile
 import com.example.data.DataSealed
 
-sealed class AllViewHolder(private val binding:ViewBinding) :RecyclerView.ViewHolder(binding.root){
+sealed class AllViewHolder(binding:ViewBinding) :RecyclerView.ViewHolder(binding.root){
     class TitleViewHolder(private val binding: UserDescriptionBinding) : AllViewHolder(binding) {
         fun bindIt(userInfo: DataSealed.UserDescription) {
             binding.apply {
@@ -35,8 +35,8 @@ sealed class AllViewHolder(private val binding:ViewBinding) :RecyclerView.ViewHo
             binding.apply {
                 MRPPrice.text="${ExtraFile.Rs} 1000"
                 MRPPrice.paint.isStrikeThruText=true
-                currentPrice.text=shop.shoppingProductItem.price.toString()
-                productCategory.text=shop.shoppingProductItem.category
+                currentPrice.text="${ExtraFile.Rs} ${shop.shoppingProductItem.price}"
+                productCategory.text="# ${shop.shoppingProductItem.category}"
                 productDescription.text=shop.shoppingProductItem.description
                 productImage.load(shop.shoppingProductItem.image)
                 productTitle.text=shop.shoppingProductItem.title
