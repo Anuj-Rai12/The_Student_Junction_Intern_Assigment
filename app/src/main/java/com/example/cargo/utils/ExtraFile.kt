@@ -38,10 +38,13 @@ class MyDialog :
 
 object ExtraFile {
     const val log_out_msg = "Log Out!!"
-    const val Base_Url=""
-    const val Api_key=""
-    const val Host_key=""
+    const val Base_Url="https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/"
+    const val Api_key="7e6ff6d410msh35b86d2b43c0d56p1a8a7cjsna450faec7305"
+    const val Host_key="apidojo-hm-hennes-mauritz-v1.p.rapidapi.com"
+    const val Host_api_key="x-rapidapi-key:"
+    const val accept_key= "x-rapidapi-host:"
     const val Load_size=5
+    const val show_dialog_once="My_Dialog_Application_Status"
 }
 
 fun isValidPhone(phone: String): Boolean {
