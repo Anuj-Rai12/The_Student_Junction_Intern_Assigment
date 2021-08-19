@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Cargo</string>
+    <!-- Login And SignUp Screen-->
+    <string name="login_home">Login Screen</string>
+    <string name="sign_home">Create Account</string>
+    <string name="app_create_acc">Create Account.</string>
+    <string name="app_email_hint">Email</string>
+    <string name="app_pass_hint">Password</string>
+    <string name="app_remember">Remember Me</string>
+    <string name="app_login_btn">Login</string>
+    <string name="app_log_Ot_btn">Log Out</string>
+    <string name="app_sign_btn">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_num">Phone Number</string>
+    <string name="app_next">Register</string>
+
+    <!-- Product Screen -->
+    <string name="app_home">Shopping.</string>
 </resources>

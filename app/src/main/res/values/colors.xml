@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Login Screen -->
+    <!-- Color Screen -->
+    <color name="cheery_red">#ee5c3f</color>
+    <color name="color_red">#D50000</color>
+    <color name="trans_parent_btn_color">#00000000</color>
 </resources>
