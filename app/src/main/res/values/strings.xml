@@ -21,4 +21,9 @@
     <string name="wrong_phone">Please,Enter the Correct Phone Number</string>
     <!-- Product Screen -->
     <string name="app_home">Shopping.</string>
+    <string name="image_desc">Product Images</string>
+    <string name="see_it">See All</string>
+    <string name="my_category">Categories</string>
+    <string name="user_name">Hey Alex,</string>
+    <string name="user_desc">Find a course you want to learn</string>
 </resources>

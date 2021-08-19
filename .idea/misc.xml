@@ -5,11 +5,14 @@
       <map>
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/drawable/black_border.xml" value="0.22777777777777777" />
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/activity_main.xml" value="0.2234375" />
+        <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/category_item.xml" value="0.2234375" />
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/custom_progress_bar_layout.xml" value="0.264" />
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/login_fragment_screen.xml" value="0.264" />
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/product_description_fragment.xml" value="0.2234375" />
+        <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/product_item.xml" value="0.4" />
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/product_screen_fragment.xml" value="0.2234375" />
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/registration_fragment.xml" value="0.2234375" />
+        <entry key="..\:/Androidprojects/Cargo/app/src/main/res/layout/user_description.xml" value="0.2234375" />
         <entry key="..\:/Androidprojects/Cargo/app/src/main/res/menu/logout_menu.xml" value="0.2234375" />
       </map>
     </option>

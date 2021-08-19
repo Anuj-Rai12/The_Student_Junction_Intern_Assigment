@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import java.util.regex.Pattern
 import javax.inject.Inject
 
+const val TAG="ANUJ"
+
 class MyDialog :
     androidx.fragment.app.DialogFragment() {
     private val args: MyDialogArgs by navArgs()
@@ -38,20 +40,13 @@ class MyDialog :
 
 object ExtraFile {
     const val log_out_msg = "Log Out!!"
-    const val Base_Url="https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/"
-    const val Api_key="7e6ff6d410msh35b86d2b43c0d56p1a8a7cjsna450faec7305"
-    const val Host_key="apidojo-hm-hennes-mauritz-v1.p.rapidapi.com"
-    const val Host_api_key="x-rapidapi-key:"
-    const val accept_key= "x-rapidapi-host:"
-    const val Load_size=5
+    const val Base_Url="https://fakestoreapi.com"
+    const val param_key="/products"
+    const val Load_size=30
     const val show_dialog_once="My_Dialog_Application_Status"
+    const val Rs="₹"
 }
 
-fun isValidPhone(phone: String): Boolean {
-    val phonetic = "^[+]?[0-9]{10,13}\$"
-    val pattern = Pattern.compile(phonetic)
-    return pattern.matcher(phone).matches()
-}
 
 fun msg() = "The Good Password Must contain Following thing ;) :- \n\n" +
         "1.At least 1 digit i.e [0-9]\n" +
