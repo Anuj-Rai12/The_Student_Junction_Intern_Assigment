@@ -109,19 +109,20 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
             MainRecycleView.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(requireContext())
-                pagingAdapter = PagingAdapter { shop ->
-                    itemClick(shop)
+                pagingAdapter = PagingAdapter { shop ,maxPrice->
+                    itemClick(shop,maxPrice)
                 }
                 adapter = pagingAdapter
             }
         }
     }
 
-    private fun itemClick(shop: ShoppingProductItem) {
+    private fun itemClick(shop: ShoppingProductItem,maxPrice:String) {
         val action =
             ShoppingDashBoardFragmentDirections.actionShoppingDashBoardFragmentToProductDetailFragment(
                 category = "#${shop.category}",
-                shop = shop
+                shop = shop,
+                maxprice= maxPrice
             )
         findNavController().navigate(action)
     }

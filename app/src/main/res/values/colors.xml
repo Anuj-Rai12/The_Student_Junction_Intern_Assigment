@@ -11,6 +11,7 @@
     <!-- Color Screen -->
     <color name="cheery_red">#ee5c3f</color>
     <color name="color_red">#D50000</color>
+    <color name="color_green">#00C853</color>
     <color name="user_desc_color">#827E7E</color>
     <color name="card_color">#FCF6F5FF</color>
     <color name="trans_parent_btn_color">#00000000</color>

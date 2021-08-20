@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/userTitle"
@@ -12,23 +12,63 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:fontFamily="@font/roboto_medium"
-        tools:text="@string/user_name"
+        android:paddingBottom="10dp"
         android:textColor="@color/black"
         android:textSize="26sp"
-        android:paddingBottom="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/user_name" />
 
     <TextView
         android:id="@+id/users_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@string/user_desc"
         android:layout_margin="5dp"
-        android:textSize="16sp"
         android:textColor="@color/user_desc_color"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userTitle" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Product_current_price"
+        tools:text="@string/user_desc" />
+
+    <TextView
+        android:id="@+id/Product_current_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        tools:text="₹ 420.00"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/userTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/Product_mrp_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/user_desc_color"
+        tools:text="₹ 1000.00"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/Product_current_price"
+        app:layout_constraintTop_toTopOf="@id/Product_current_price"
+        app:layout_constraintLeft_toRightOf="@id/Product_current_price" />
+    <TextView
+        android:id="@+id/product_discount_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/color_green"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="@id/Product_mrp_price"
+        app:layout_constraintLeft_toRightOf="@id/Product_mrp_price"
+        app:layout_constraintBottom_toBottomOf="@id/Product_mrp_price"
+        tools:text="10% off" />
 </androidx.constraintlayout.widget.ConstraintLayout>

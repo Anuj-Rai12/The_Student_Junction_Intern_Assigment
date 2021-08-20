@@ -13,7 +13,7 @@ import com.example.cargo.utils.TAG
 import com.example.data.DataSealed
 import com.example.data.ShoppingProductItem
 
-class PagingAdapter constructor(private val function:(shop:ShoppingProductItem)->Unit) : PagingDataAdapter<DataSealed, AllViewHolder>(diffUtil) {
+class PagingAdapter constructor(private val function:(shop:ShoppingProductItem,maxPrice:String)->Unit) : PagingDataAdapter<DataSealed, AllViewHolder>(diffUtil) {
     override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
         val current = getItem(position)
         current?.let { dataItem ->

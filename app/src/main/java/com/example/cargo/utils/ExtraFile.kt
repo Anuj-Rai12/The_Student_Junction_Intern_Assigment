@@ -7,6 +7,8 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.example.cargo.databinding.CustomProgressBarLayoutBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -124,3 +126,15 @@ class CustomProgressBar @Inject constructor() {
 
     fun dismiss() = alertDialog?.dismiss()
 }
+fun fetchDis(currPrice: Double, mrpPrice: Double) =
+    (((mrpPrice - currPrice) / mrpPrice) * 100).toInt()
+//Utils Function to Hide View
+fun View.hide() {
+    this.isVisible = false
+}
+
+//Utils Function to Show View
+fun View.show() {
+    this.isVisible = true
+}
+

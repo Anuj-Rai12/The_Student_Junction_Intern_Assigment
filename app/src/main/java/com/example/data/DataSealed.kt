@@ -15,3 +15,15 @@ sealed class DataSealed {
         val shoppingProductItem: ShoppingProductItem
     ) : DataSealed()
 }
+
+
+sealed class DataProduction {
+    data class ImageUri(
+        val uri:String
+    ) : DataProduction()
+
+    data class ShoppingInfo(
+        val shoppingProductItem: ShoppingProductItem,
+        val maxPrice:Double?=null
+    ) : DataProduction()
+}

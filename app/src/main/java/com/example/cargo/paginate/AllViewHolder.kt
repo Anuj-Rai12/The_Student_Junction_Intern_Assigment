@@ -8,6 +8,10 @@ import com.example.cargo.databinding.CategoryItemBinding
 import com.example.cargo.databinding.ProductItemBinding
 import com.example.cargo.databinding.UserDescriptionBinding
 import com.example.cargo.utils.ExtraFile
+import com.example.cargo.utils.fetchDis
+import com.example.cargo.utils.hide
+import com.example.cargo.utils.show
+import com.example.data.DataProduction
 import com.example.data.DataSealed
 import com.example.data.ShoppingProductItem
 
@@ -19,6 +23,32 @@ sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(bindi
                 usersDescription.text = userInfo.description
             }
         }
+
+        @SuppressLint("SetTextI18n")
+        fun showProductDetail(shop: DataProduction.ShoppingInfo) {
+            binding.apply {
+                val currPrice = shop.shoppingProductItem.price
+                val maxPrice = shop.maxPrice!!
+                userTitle.text = shop.shoppingProductItem.title
+                usersDescription.text = shop.shoppingProductItem.description
+                ProductCurrentPrice.apply {
+                    show()
+                    setPadding(0, 0, 0, 20)
+                    text = "${ExtraFile.Rs} $currPrice"
+                }
+                ProductMrpPrice.apply {
+                    show()
+                    setPadding(0, 0, 0, 20)
+                    text = "${ExtraFile.Rs} $maxPrice"
+                    paint.isStrikeThruText = true
+                }
+                productDiscountPrice.apply {
+                    show()
+                    setPadding(0, 0, 0, 20)
+                    text = "${fetchDis(currPrice, maxPrice)}% off"
+                }
+            }
+        }
     }
 
     class CategoryViewHolder(private val binding: CategoryItemBinding) : AllViewHolder(binding) {
@@ -28,13 +58,22 @@ sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(bindi
                 myCategories.text = category.title
             }
         }
+
+        fun showItemProduct(img: DataProduction.ImageUri) {
+            binding.apply {
+                seeAll.hide()
+                myCategories.hide()
+                productImageView.show()
+                productImageView.load(img.uri)
+            }
+        }
     }
 
     class ShoppingViewHolder(private val binding: ProductItemBinding) : AllViewHolder(binding) {
         @SuppressLint("SetTextI18n")
         fun bindIt(
             shop: DataSealed.ShoppingInfo,
-            product: (shop: ShoppingProductItem) -> Unit,
+            product: (shop: ShoppingProductItem, maxPrice: String) -> Unit,
             position: Int
         ) {
             binding.apply {
@@ -49,10 +88,9 @@ sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(bindi
                 productTitle.text = shop.shoppingProductItem.title
                 discountPrice.text = "${fetchDis(currPrice, mrpPrice)}%"
                 binding.root.setOnClickListener {
-                    product(shop.shoppingProductItem)
+                    product(shop.shoppingProductItem, mrpPrice.toString())
                 }
             }
         }
-        private fun fetchDis(currPrice: Double, mrpPrice: Double) =(((mrpPrice-currPrice)/mrpPrice)*100).toInt()
     }
 }
