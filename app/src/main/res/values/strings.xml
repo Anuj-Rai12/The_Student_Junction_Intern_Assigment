@@ -26,4 +26,7 @@
     <string name="my_category">Categories</string>
     <string name="user_name">Hey Alex,</string>
     <string name="user_desc">Find a Product among the Treading Brands.</string>
+    <!-- product Description-->
+    <string name="app_cart">Add To Cart</string>
+    <string name="app_buy">BUY</string>
 </resources>

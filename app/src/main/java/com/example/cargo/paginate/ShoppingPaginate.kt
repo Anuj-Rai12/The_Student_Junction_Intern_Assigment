@@ -29,7 +29,7 @@ class ShoppingPaginate(private val shoppingApi: ShoppingApi) :
             if (pageIndex== STARTING_PAGE_INDEX) {
                 list.add(
                     DataSealed.UserDescription(
-                        title = "Hey Alex,",
+                        title = "Hey Friend,",
                         description = "Find a Product among the Treading Brands."
                     )
                 )
