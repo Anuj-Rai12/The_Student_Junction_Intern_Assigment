@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cargo</string>
+    <string name="app_name">Shopping Assignment</string>
     <!-- Login And SignUp Screen-->
     <string name="login_home">Login Screen</string>
     <string name="sign_home">Create Account</string>
