@@ -72,11 +72,14 @@
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.cargo.ui.ProductDetailFragment"
-        android:label="{title}"
+        android:label="{category}"
         tools:layout="@layout/product_description_fragment" >
         <argument
-            android:name="title"
+            android:name="category"
             app:argType="string"
             android:defaultValue="My Product" />
+        <argument
+            android:name="shop"
+            app:argType="com.example.data.ShoppingProductItem" />
     </fragment>
 </navigation>

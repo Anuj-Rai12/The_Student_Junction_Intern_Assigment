@@ -20,6 +20,7 @@ import com.example.cargo.utils.ExtraFile
 import com.example.cargo.utils.MyLogoutDialog
 import com.example.cargo.utils.TAG
 import com.example.cargo.viewmodel.MyViewModel
+import com.example.data.ShoppingProductItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -37,8 +38,7 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
     @Inject
     lateinit var customProgress: CustomProgress
 
-    @Inject
-    lateinit var pagingAdapter: PagingAdapter
+    private lateinit var pagingAdapter: PagingAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -109,9 +109,21 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
             MainRecycleView.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(requireContext())
+                pagingAdapter = PagingAdapter { shop ->
+                    itemClick(shop)
+                }
                 adapter = pagingAdapter
             }
         }
+    }
+
+    private fun itemClick(shop: ShoppingProductItem) {
+        val action =
+            ShoppingDashBoardFragmentDirections.actionShoppingDashBoardFragmentToProductDetailFragment(
+                category = "#${shop.category}",
+                shop = shop
+            )
+        findNavController().navigate(action)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

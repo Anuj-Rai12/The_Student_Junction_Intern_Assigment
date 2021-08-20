@@ -9,8 +9,9 @@ import com.example.cargo.databinding.ProductItemBinding
 import com.example.cargo.databinding.UserDescriptionBinding
 import com.example.cargo.utils.ExtraFile
 import com.example.data.DataSealed
+import com.example.data.ShoppingProductItem
 
-sealed class AllViewHolder(binding:ViewBinding) :RecyclerView.ViewHolder(binding.root){
+sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
     class TitleViewHolder(private val binding: UserDescriptionBinding) : AllViewHolder(binding) {
         fun bindIt(userInfo: DataSealed.UserDescription) {
             binding.apply {
@@ -29,19 +30,29 @@ sealed class AllViewHolder(binding:ViewBinding) :RecyclerView.ViewHolder(binding
         }
     }
 
-    class  ShoppingViewHolder(private val binding: ProductItemBinding):AllViewHolder(binding){
+    class ShoppingViewHolder(private val binding: ProductItemBinding) : AllViewHolder(binding) {
         @SuppressLint("SetTextI18n")
-        fun bindIt(shop:DataSealed.ShoppingInfo){
+        fun bindIt(
+            shop: DataSealed.ShoppingInfo,
+            product: (shop: ShoppingProductItem) -> Unit,
+            position: Int
+        ) {
             binding.apply {
-                MRPPrice.text="${ExtraFile.Rs} 1000"
-                MRPPrice.paint.isStrikeThruText=true
-                currentPrice.text="${ExtraFile.Rs} ${shop.shoppingProductItem.price}"
-                productCategory.text="# ${shop.shoppingProductItem.category}"
-                productDescription.text=shop.shoppingProductItem.description
+                val currPrice = shop.shoppingProductItem.price
+                val mrpPrice = (shop.shoppingProductItem.price) * position
+                MRPPrice.text = "${ExtraFile.Rs} $mrpPrice"
+                MRPPrice.paint.isStrikeThruText = true
+                currentPrice.text = "${ExtraFile.Rs} $currPrice"
+                productCategory.text = "# ${shop.shoppingProductItem.category}"
+                productDescription.text = shop.shoppingProductItem.description
                 productImage.load(shop.shoppingProductItem.image)
-                productTitle.text=shop.shoppingProductItem.title
-                discountPrice.text="10%"
+                productTitle.text = shop.shoppingProductItem.title
+                discountPrice.text = "${fetchDis(currPrice, mrpPrice)}%"
+                binding.root.setOnClickListener {
+                    product(shop.shoppingProductItem)
+                }
             }
         }
+        private fun fetchDis(currPrice: Double, mrpPrice: Double) =(((mrpPrice-currPrice)/mrpPrice)*100).toInt()
     }
 }

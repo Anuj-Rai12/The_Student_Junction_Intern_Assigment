@@ -11,9 +11,9 @@ import com.example.cargo.databinding.ProductItemBinding
 import com.example.cargo.databinding.UserDescriptionBinding
 import com.example.cargo.utils.TAG
 import com.example.data.DataSealed
-import javax.inject.Inject
+import com.example.data.ShoppingProductItem
 
-class PagingAdapter @Inject constructor() : PagingDataAdapter<DataSealed, AllViewHolder>(diffUtil) {
+class PagingAdapter constructor(private val function:(shop:ShoppingProductItem)->Unit) : PagingDataAdapter<DataSealed, AllViewHolder>(diffUtil) {
     override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
         val current = getItem(position)
         current?.let { dataItem ->
@@ -22,8 +22,9 @@ class PagingAdapter @Inject constructor() : PagingDataAdapter<DataSealed, AllVie
                 is AllViewHolder.CategoryViewHolder -> holder.bindIt(category = dataItem as DataSealed.Category)
                 //Data for Shopping
                 is AllViewHolder.ShoppingViewHolder -> holder.bindIt(
-                    shop = dataItem as DataSealed.ShoppingInfo
-
+                    shop = dataItem as DataSealed.ShoppingInfo,
+                    product=function,
+                    position=position
                 )
                 //Data for Title
                 is AllViewHolder.TitleViewHolder -> holder.bindIt(userInfo = dataItem as DataSealed.UserDescription)

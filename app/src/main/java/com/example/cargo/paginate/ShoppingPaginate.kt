@@ -30,7 +30,7 @@ class ShoppingPaginate(private val shoppingApi: ShoppingApi) :
                 list.add(
                     DataSealed.UserDescription(
                         title = "Hey Alex,",
-                        description = "Find a Product among the Treading Fashion."
+                        description = "Find a Product among the Treading Brands."
                     )
                 )
                 list.add(DataSealed.Category(title = "Categories", textBtn = "See All"))
