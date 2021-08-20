@@ -109,20 +109,20 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
             MainRecycleView.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(requireContext())
-                pagingAdapter = PagingAdapter { shop ,maxPrice->
-                    itemClick(shop,maxPrice)
+                pagingAdapter = PagingAdapter { shop, maxPrice ->
+                    itemClick(shop, maxPrice)
                 }
                 adapter = pagingAdapter
             }
         }
     }
 
-    private fun itemClick(shop: ShoppingProductItem,maxPrice:String) {
+    private fun itemClick(shop: ShoppingProductItem, maxPrice: String) {
         val action =
             ShoppingDashBoardFragmentDirections.actionShoppingDashBoardFragmentToProductDetailFragment(
                 category = "#${shop.category}",
                 shop = shop,
-                maxprice= maxPrice
+                maxprice = maxPrice
             )
         findNavController().navigate(action)
     }
@@ -141,7 +141,10 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
         myLogoutDialog = MyLogoutDialog(
             title = ExtraFile.log_out_msg,
             msg = "Are you Sure Want to LogOut?"
-        )
+        ) { flag ->
+            dialogFlag = flag
+        }
+        myLogoutDialog?.isCancelable = false
         myLogoutDialog?.show(childFragmentManager, ExtraFile.log_out_msg)
         dialogFlag = true
     }

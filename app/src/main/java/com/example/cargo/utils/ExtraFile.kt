@@ -29,9 +29,10 @@ class MyDialog :
     }
 }
 
-class MyLogoutDialog constructor(
+class MyLogoutDialog(
     private val title: String = "No Title",
-    private val msg: String = "No Message"
+    private val msg: String = "No Message",
+    private val function: ((flag: Boolean) -> Unit)
 ) :
     androidx.fragment.app.DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -42,6 +43,7 @@ class MyLogoutDialog constructor(
             activity?.finish()
         }
             .setNegativeButton("Cancel") { dialogInterface, _ ->
+                function(false)
                 dialogInterface.dismiss()
             }
         return alterDialog.create()
@@ -126,8 +128,10 @@ class CustomProgressBar @Inject constructor() {
 
     fun dismiss() = alertDialog?.dismiss()
 }
+
 fun fetchDis(currPrice: Double, mrpPrice: Double) =
     (((mrpPrice - currPrice) / mrpPrice) * 100).toInt()
+
 //Utils Function to Hide View
 fun View.hide() {
     this.isVisible = false
