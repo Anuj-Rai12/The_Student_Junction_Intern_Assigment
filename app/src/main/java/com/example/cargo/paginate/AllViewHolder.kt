@@ -39,7 +39,7 @@ sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(bindi
                 ProductMrpPrice.apply {
                     show()
                     setPadding(0, 0, 0, 20)
-                    text = "${ExtraFile.Rs} $maxPrice"
+                    text = "${ExtraFile.Rs} ${maxPrice.toInt()}"
                     paint.isStrikeThruText = true
                 }
                 productDiscountPrice.apply {
@@ -79,7 +79,7 @@ sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(bindi
             binding.apply {
                 val currPrice = shop.shoppingProductItem.price
                 val mrpPrice = (shop.shoppingProductItem.price) * position
-                MRPPrice.text = "${ExtraFile.Rs} $mrpPrice"
+                MRPPrice.text = "${ExtraFile.Rs} ${mrpPrice.toInt()}"
                 MRPPrice.paint.isStrikeThruText = true
                 currentPrice.text = "${ExtraFile.Rs} $currPrice"
                 productCategory.text = "# ${shop.shoppingProductItem.category}"

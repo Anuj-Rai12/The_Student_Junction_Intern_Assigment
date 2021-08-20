@@ -31,22 +31,24 @@
                 android:id="@+id/product_cart"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_margin="8dp"
                 android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/trans_parent_btn_color"
                 android:elevation="5dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/app_cart"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                app:backgroundTint="@color/trans_parent_btn_color"
-                app:boxStrokeWidthFocused="4dp" />
+                android:textStyle="normal" />
 
             <Button
                 android:id="@+id/product_buy"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_margin="8dp"
                 android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/cheery_red"
                 android:elevation="5dp"
                 android:fontFamily="@font/roboto_medium"

@@ -33,6 +33,7 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
     private lateinit var binding: ProductScreenFragmentBinding
     private val viewModel: MyViewModel by viewModels()
     private var dialogFlag: Boolean? = null
+    private var loadOnce: Boolean? = null
     private var myLogoutDialog: MyLogoutDialog? = null
 
     @Inject
@@ -45,14 +46,14 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
         binding = ProductScreenFragmentBinding.bind(view)
         savedInstanceState?.let {
             dialogFlag = it.getBoolean(ExtraFile.show_dialog_once)
+            loadOnce = it.getBoolean(ExtraFile.param_key)
         }
         if (dialogFlag == true)
             openDialog()
-
-        showLoading()
         showRecycle()
         setData()
-        setUpUi()
+        if (loadOnce == null)
+            setUpUi()
         setHasOptionsMenu(true)
     }
 
@@ -100,6 +101,7 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
         lifecycleScope.launch {
             viewModel.flow.collect {
                 pagingAdapter.submitData(it)
+                hideLoading()
             }
         }
     }
@@ -110,6 +112,7 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(requireContext())
                 pagingAdapter = PagingAdapter { shop, maxPrice ->
+                    loadOnce = true
                     itemClick(shop, maxPrice)
                 }
                 adapter = pagingAdapter
@@ -120,7 +123,7 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
     private fun itemClick(shop: ShoppingProductItem, maxPrice: String) {
         val action =
             ShoppingDashBoardFragmentDirections.actionShoppingDashBoardFragmentToProductDetailFragment(
-                category = "#${shop.category}",
+                category = "# ${shop.category}",
                 shop = shop,
                 maxprice = maxPrice
             )
@@ -153,6 +156,9 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
         super.onSaveInstanceState(outState)
         dialogFlag?.let {
             outState.putBoolean(ExtraFile.show_dialog_once, it)
+        }
+        loadOnce?.let {
+            outState.putBoolean(ExtraFile.param_key, it)
         }
     }
 }
