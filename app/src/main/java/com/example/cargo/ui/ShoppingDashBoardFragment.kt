@@ -17,6 +17,7 @@ import com.example.cargo.databinding.ProductScreenFragmentBinding
 import com.example.cargo.paginate.PagingAdapter
 import com.example.cargo.utils.CustomProgress
 import com.example.cargo.utils.ExtraFile
+import com.example.cargo.utils.MyLogoutDialog
 import com.example.cargo.utils.TAG
 import com.example.cargo.viewmodel.MyViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,8 @@ import javax.inject.Inject
 class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
     private lateinit var binding: ProductScreenFragmentBinding
     private val viewModel: MyViewModel by viewModels()
+    private var dialogFlag: Boolean? = null
+    private var myLogoutDialog: MyLogoutDialog? = null
 
     @Inject
     lateinit var customProgress: CustomProgress
@@ -40,13 +43,22 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         binding = ProductScreenFragmentBinding.bind(view)
+        savedInstanceState?.let {
+            dialogFlag = it.getBoolean(ExtraFile.show_dialog_once)
+        }
+        if (dialogFlag == true)
+            openDialog()
+
+        showLoading()
         showRecycle()
         setData()
         setUpUi()
         setHasOptionsMenu(true)
     }
 
-    private fun showLoading() = customProgress.showLoading(requireActivity(),"Product Is Loading..")
+    private fun showLoading() =
+        customProgress.showLoading(requireActivity(), "Product Is Loading..")
+
     private fun hideLoading() = customProgress.hideLoading()
     private fun setUpUi() {
         lifecycleScope.launch {
@@ -81,7 +93,9 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
     override fun onPause() {
         super.onPause()
         hideLoading()
+        myLogoutDialog?.dismiss()
     }
+
     private fun setData() {
         lifecycleScope.launch {
             viewModel.flow.collect {
@@ -105,12 +119,24 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
         inflater.inflate(R.menu.logout_menu, menu)
         val log = menu.findItem(R.id.logout_btn)
         log.setOnMenuItemClickListener {
-            val action = ShoppingDashBoardFragmentDirections.actionGlobalMyDialog(
-                title = ExtraFile.log_out_msg,
-                message = "Are you Sure you Want to Log Out?"
-            )
-            findNavController().navigate(action)
+            openDialog()
             return@setOnMenuItemClickListener true
+        }
+    }
+
+    private fun openDialog() {
+        myLogoutDialog = MyLogoutDialog(
+            title = ExtraFile.log_out_msg,
+            msg = "Are you Sure Want to LogOut?"
+        )
+        myLogoutDialog?.show(childFragmentManager, ExtraFile.log_out_msg)
+        dialogFlag = true
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        dialogFlag?.let {
+            outState.putBoolean(ExtraFile.show_dialog_once, it)
         }
     }
 }

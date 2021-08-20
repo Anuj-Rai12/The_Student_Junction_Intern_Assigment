@@ -13,38 +13,46 @@ import com.google.firebase.auth.FirebaseAuth
 import java.util.regex.Pattern
 import javax.inject.Inject
 
-const val TAG="ANUJ"
+const val TAG = "ANUJ"
 
 class MyDialog :
     androidx.fragment.app.DialogFragment() {
     private val args: MyDialogArgs by navArgs()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val alterDialog = AlertDialog.Builder(requireActivity()).setTitle(args.title)
-        alterDialog.setMessage(args.message)
-        if (!args.flag && args.title == ExtraFile.log_out_msg) {
-            alterDialog.setPositiveButton("LogOut") { _, _ ->
-                FirebaseAuth.getInstance().signOut()
-                activity?.finish()
-            }
-                .setNegativeButton("Cancel") { dialogInterface, _ ->
-                    dialogInterface.dismiss()
-                }
-        } else {
-            alterDialog.setPositiveButton("ok") { dialogInterface, _ ->
+        alterDialog.setMessage(args.message).setPositiveButton("ok") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+        return alterDialog.create()
+    }
+}
+
+class MyLogoutDialog constructor(
+    private val title: String = "No Title",
+    private val msg: String = "No Message"
+) :
+    androidx.fragment.app.DialogFragment() {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val alterDialog = AlertDialog.Builder(requireActivity()).setTitle(title)
+        alterDialog.setMessage(msg)
+        alterDialog.setPositiveButton("LogOut") { _, _ ->
+            FirebaseAuth.getInstance().signOut()
+            activity?.finish()
+        }
+            .setNegativeButton("Cancel") { dialogInterface, _ ->
                 dialogInterface.dismiss()
             }
-        }
         return alterDialog.create()
     }
 }
 
 object ExtraFile {
     const val log_out_msg = "Log Out!!"
-    const val Base_Url="https://fakestoreapi.com"
-    const val param_key="/products"
-    const val Load_size=30
-    const val show_dialog_once="My_Dialog_Application_Status"
-    const val Rs="₹"
+    const val Base_Url = "https://fakestoreapi.com"
+    const val param_key = "/products"
+    const val Load_size = 30
+    const val show_dialog_once = "My_Dialog_Application_Status"
+    const val Rs = "₹"
 }
 
 
@@ -98,8 +106,9 @@ class CustomProgress @Inject constructor(private val customProgressBar: CustomPr
 
 class CustomProgressBar @Inject constructor() {
     private var alertDialog: AlertDialog? = null
+
     @SuppressLint("SourceLockedOrientationActivity")
-    fun show(context: Context, title: CharSequence?, flag:Boolean=true) {
+    fun show(context: Context, title: CharSequence?, flag: Boolean = true) {
         val con = (context as Activity)
         val alertDialog = AlertDialog.Builder(con)
         val inflater = (con).layoutInflater
@@ -112,5 +121,6 @@ class CustomProgressBar @Inject constructor() {
         this.alertDialog = alertDialog.create()
         this.alertDialog?.show()
     }
-    fun dismiss()= alertDialog?.dismiss()
+
+    fun dismiss() = alertDialog?.dismiss()
 }

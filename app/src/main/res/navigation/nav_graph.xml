@@ -15,10 +15,6 @@
         <argument
             android:name="message"
             app:argType="string" />
-        <argument
-            android:name="flag"
-            app:argType="boolean"
-            android:defaultValue="false" />
     </dialog>
     <action
         android:id="@+id/action_global_myDialog"
