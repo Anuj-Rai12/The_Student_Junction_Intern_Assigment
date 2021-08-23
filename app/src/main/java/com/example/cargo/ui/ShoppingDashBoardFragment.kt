@@ -2,8 +2,6 @@ package com.example.cargo.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -47,6 +45,15 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
         savedInstanceState?.let {
             dialogFlag = it.getBoolean(ExtraFile.show_dialog_once)
             loadOnce = it.getBoolean(ExtraFile.param_key)
+        }
+        binding.toolbarLayoutAll.apply {
+            inflateMenu(R.menu.logout_menu)
+            setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.logout_btn-> openDialog()
+                }
+                return@setOnMenuItemClickListener true
+            }
         }
         if (dialogFlag == true)
             openDialog()
@@ -129,17 +136,6 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
             )
         findNavController().navigate(action)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.logout_menu, menu)
-        val log = menu.findItem(R.id.logout_btn)
-        log.setOnMenuItemClickListener {
-            openDialog()
-            return@setOnMenuItemClickListener true
-        }
-    }
-
     private fun openDialog() {
         myLogoutDialog = MyLogoutDialog(
             title = ExtraFile.log_out_msg,
