@@ -10,8 +10,8 @@ import com.example.cargo.databinding.CategoryItemBinding
 import com.example.cargo.databinding.ProductItemBinding
 import com.example.cargo.databinding.UserDescriptionBinding
 import com.example.cargo.utils.TAG
-import com.example.data.DataSealed
-import com.example.data.ShoppingProductItem
+import com.example.cargo.data.DataSealed
+import com.example.cargo.data.ShoppingProductItem
 
 class PagingAdapter constructor(private val function:(shop:ShoppingProductItem,maxPrice:String)->Unit) : PagingDataAdapter<DataSealed, AllViewHolder>(diffUtil) {
     override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
@@ -28,6 +28,7 @@ class PagingAdapter constructor(private val function:(shop:ShoppingProductItem,m
                 )
                 //Data for Title
                 is AllViewHolder.TitleViewHolder -> holder.bindIt(userInfo = dataItem as DataSealed.UserDescription)
+                is AllViewHolder.ButtonLayout -> Log.i(TAG, "onBindViewHolder: Nothing To Do")
             }
         }
     }

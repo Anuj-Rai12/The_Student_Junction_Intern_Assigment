@@ -4,58 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.example.cargo.ui.ProductDetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:background="@color/cheery_red"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/arrow_img"
+                    android:layout_width="50dp"
+                    android:layout_margin="4dp"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    android:scaleType="fitStart"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/arrow" />
+
+                <TextView
+                    android:id="@+id/category_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_margin="4dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="@string/app_home"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@id/arrow_img"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            app:layout_constraintLeft_toLeftOf="@id/product_layout"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_layout">
-
-            <Button
-                android:id="@+id/product_cart"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/trans_parent_btn_color"
-                android:elevation="5dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/app_cart"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="normal" />
-
-            <Button
-                android:id="@+id/product_buy"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/cheery_red"
-                android:elevation="5dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/app_buy"
-                android:textSize="18sp"
-                android:textStyle="normal" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </ScrollView>

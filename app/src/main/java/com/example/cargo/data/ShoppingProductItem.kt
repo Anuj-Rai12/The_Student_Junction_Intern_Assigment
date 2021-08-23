@@ -1,4 +1,4 @@
-package com.example.data
+package com.example.cargo.data
 
 
 import android.os.Parcelable

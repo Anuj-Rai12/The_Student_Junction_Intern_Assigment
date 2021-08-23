@@ -1,7 +1,7 @@
 package com.example.cargo.api
 
 import com.example.cargo.utils.ExtraFile
-import com.example.data.ShoppingProduct
+import com.example.cargo.data.ShoppingProduct
 import retrofit2.http.GET
 import retrofit2.http.Query
 

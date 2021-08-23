@@ -20,7 +20,7 @@ import com.example.cargo.utils.ExtraFile
 import com.example.cargo.utils.MyLogoutDialog
 import com.example.cargo.utils.TAG
 import com.example.cargo.viewmodel.MyViewModel
-import com.example.data.ShoppingProductItem
+import com.example.cargo.data.ShoppingProductItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -42,7 +42,7 @@ class ShoppingDashBoardFragment : Fragment(R.layout.product_screen_fragment) {
     private lateinit var pagingAdapter: PagingAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
         binding = ProductScreenFragmentBinding.bind(view)
         savedInstanceState?.let {
             dialogFlag = it.getBoolean(ExtraFile.show_dialog_once)

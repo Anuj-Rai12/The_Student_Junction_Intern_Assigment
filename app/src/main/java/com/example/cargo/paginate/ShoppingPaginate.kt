@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cargo.api.ShoppingApi
 import com.example.cargo.utils.ExtraFile
-import com.example.data.DataSealed
+import com.example.cargo.data.DataSealed
 
 private const val STARTING_PAGE_INDEX = 1
 

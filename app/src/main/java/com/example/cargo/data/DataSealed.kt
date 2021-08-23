@@ -1,4 +1,4 @@
-package com.example.data
+package com.example.cargo.data
 
 sealed class DataSealed {
     data class UserDescription(
@@ -19,11 +19,16 @@ sealed class DataSealed {
 
 sealed class DataProduction {
     data class ImageUri(
-        val uri:String
+        val uri: String
     ) : DataProduction()
 
     data class ShoppingInfo(
         val shoppingProductItem: ShoppingProductItem,
-        val maxPrice:Double?=null
+        val maxPrice: Double? = null
+    ) : DataProduction()
+
+    data class BtnLayout(
+        val btn1: String,
+        val btn2: String
     ) : DataProduction()
 }

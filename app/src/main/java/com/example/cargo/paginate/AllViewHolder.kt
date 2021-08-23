@@ -5,15 +5,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import coil.load
 import com.example.cargo.databinding.CategoryItemBinding
+import com.example.cargo.databinding.LayoutBtnClickBinding
 import com.example.cargo.databinding.ProductItemBinding
 import com.example.cargo.databinding.UserDescriptionBinding
 import com.example.cargo.utils.ExtraFile
 import com.example.cargo.utils.fetchDis
 import com.example.cargo.utils.hide
 import com.example.cargo.utils.show
-import com.example.data.DataProduction
-import com.example.data.DataSealed
-import com.example.data.ShoppingProductItem
+import com.example.cargo.data.DataProduction
+import com.example.cargo.data.DataSealed
+import com.example.cargo.data.ShoppingProductItem
 
 sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
     class TitleViewHolder(private val binding: UserDescriptionBinding) : AllViewHolder(binding) {
@@ -89,6 +90,21 @@ sealed class AllViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(bindi
                 discountPrice.text = "${fetchDis(currPrice, mrpPrice)}%"
                 binding.root.setOnClickListener {
                     product(shop.shoppingProductItem, mrpPrice.toString())
+                }
+            }
+        }
+    }
+
+    class ButtonLayout(private val binding: LayoutBtnClickBinding) : AllViewHolder(binding) {
+         fun bindIt(btn: DataProduction.BtnLayout, function: (String) -> Unit) {
+            binding.apply {
+                productBuy.text = btn.btn1
+                productCart.text = btn.btn2
+                binding.productBuy.setOnClickListener {
+                    function(btn.btn1)
+                }
+                binding.productCart.setOnClickListener {
+                    function(btn.btn2)
                 }
             }
         }

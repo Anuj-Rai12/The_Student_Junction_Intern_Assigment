@@ -80,7 +80,7 @@
             android:defaultValue="My Product" />
         <argument
             android:name="shop"
-            app:argType="com.example.data.ShoppingProductItem" />
+            app:argType="com.example.cargo.data.ShoppingProductItem" />
         <argument
             android:name="maxprice"
             app:argType="string" />
